@@ -4,8 +4,8 @@
   "description": "Assignment 1 for Social Swirls",
   "main": "index.js",
   "scripts": {
-    "start": "node backend/index.js",
-    "index": "nodemon backend/index.js"
+    "start": "node backend/server.js",
+    "index": "nodemon backend/server.js"
   },
   "repository": {
     "type": "git",

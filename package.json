@@ -1,0 +1,27 @@
+{
+  "name": "task1",
+  "version": "1.0.0",
+  "description": "Assignment 1 for Social Swirls",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/index.js",
+    "index": "nodemon backend/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loci123/TEST.git"
+  },
+  "author": "Saim Imran",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/loci123/TEST/issues"
+  },
+  "homepage": "https://github.com/loci123/TEST#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

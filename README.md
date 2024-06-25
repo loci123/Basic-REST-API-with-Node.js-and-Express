@@ -18,5 +18,10 @@ Make sure you have Node.js and npm installed on your machine. You can download t
    npm run server
    ```
 3.The server will run on http://localhost:3000
+
 4. ALL API Endpoint results are there in word file attached in my github  repo
+
+5. For Task 2 i have added db.js path :backend/config/db.js
+6. i have added schema of mongodb path: backend/model/UserMode.js
+
 

@@ -4,8 +4,7 @@ This project demonstrates a basic REST API built with Node.js and Express. The A
 
 ## Prerequisites
 
-Make sure you have Node.js and npm installed on your machine. You can download them from [Node.js](https://nodejs.org/).
-
+Make sure you have Node.js, npm, and MongoDB installed on your machine. You can download them from [Node.js](https://nodejs.org/) and [MongoDB](https://www.mongodb.com/try/download/community).
 ## Setup
 
 1. Clone the repository, navigate to the project directory, and install dependencies:
@@ -20,8 +19,13 @@ Make sure you have Node.js and npm installed on your machine. You can download t
 3.The server will run on http://localhost:3000
 
 4. ALL API Endpoint results are there in word file attached in my github  repo
-
-5. For Task 2 i have added db.js path :backend/config/db.js
-6. i have added schema of mongodb path: backend/model/UserMode.js
-
+5. script for mongooseand other
+  ```
+  npm install mongoose
+  npm install express-async-handler
+  npm instal colors
+  ```
+6. For Task 2 i have added db.js path :backend/config/db.js
+7. i have added schema of mongodb path: backend/model/UserMode.js
+9. i used shared database
 

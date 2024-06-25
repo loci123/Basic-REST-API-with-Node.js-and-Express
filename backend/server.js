@@ -13,15 +13,26 @@ app.post('/user',(req,res)=>{
     console.log('/***********\nPost method called on the Entry point /user\n***********/\n')
     res.json({user:"New User Created!",name:"Saim"})
 })
-//PUT @ /user/id
-app.put('/user/:id',(req,res)=>{
-    console.log('***********/\nPut method called on the Entry point /user\n***********/\n')
-    res.json({message:`user number ${req.params.id} Updated!`})
-})
-//DELETE @ /user/id
-app.delete('/user/:id',(req,res)=>{
-    console.log('***********/\ndelete method called on the Entry point /user\n***********/\n')
-    res.json({message:`user number ${req.params.id} deleted!`})
-})
+app.put('/user/:id', (req, res) => {
+    const userId = req.params.id;
+    if (!userId) {
+        return res.status(400).json({ error: 'User ID is required' });
+    }
+
+    console.log('***********/\nPut method called on the Entry point /user\n***********/\n');
+    res.json({ message: `User number ${userId} updated!` });
+});
+
+// DELETE @ /user/id
+app.delete('/user/:id', (req, res) => {
+    const userId = req.params.id;
+    if (!userId) {
+        return res.status(400).json({ error: 'User ID is required' });
+    }
+
+    console.log('***********/\ndelete method called on the Entry point /user\n***********/\n');
+    res.json({ message: `User number ${userId} deleted!` });
+});
+
 
 app.listen(port,()=>console.log(`Server is started on port ${port}`))

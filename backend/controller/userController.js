@@ -4,11 +4,15 @@ const asyncHandler=require('express-async-handler')
 const User=require('../model/UserMode')
 const { json } = require('express')
 
+
+///GenerateToken
 const GenerateToken=(id)=>{
     return jwt.sign({id},process.env.JWT_SECRET,{
         expiresIn:'30d'//will expire in 30 days
     })
 }
+
+
 //@desc    Register new user
 //@route   POST/api/users
 //@access  Public
@@ -86,12 +90,21 @@ const loginUser=asyncHandler(async(req,res)=>{
    
 })
 
-///GenerateToken
 
 
-
-
+//@desc    Get  user's data     
+//@route   GET/api/users/me
+//@access  Protect
+const GetUser=asyncHandler(async(req,res)=>{
+    const {_id,name,email}=await User.findById(req.user.id)
+    res.status(200).json({
+        id:_id,
+        name,
+        email,
+    })
+})
 module.exports={
     RegisterUser,
     loginUser,
+    GetUser
 }

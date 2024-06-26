@@ -1,18 +1,22 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-const goalsSchema = mongoose.Schema({
+const UserSchema = mongoose.Schema({
     name: {
         type: String,
-        required: [true, 'Please add a name']
+        required: [true, 'Please add a name'],
     },
     email: {
         type: String,
-        required: [true, 'Please add an email'],
-        match: [/.+\@.+\..+/, 'Please fill a valid email address']
-    }
-},
+        required: [true, 'Please add an email address'],
+        unique: true,
+    },
+    password: {
+        type: String,
+        required: [true, 'Please add a password'],
+    },
+}, 
 {
-    timestamps: true,
-});
+    timestamps: true // Correct the option to lowercase 'timestamps'
+})
 
-module.exports = mongoose.model('Goal', goalsSchema);
+module.exports = mongoose.model('User', UserSchema)

@@ -13,7 +13,10 @@ const app = express();
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api/users',require('./routes/userRoutes'))
+
+app.use('/api/users',require('./routes/userRoutes'));
+
+
 // GET @ /user
 app.get('/user', asyncHandler(async (req, res) => {
     console.log('/***********\nGet method called on the Entry point /user\n***********/\n');

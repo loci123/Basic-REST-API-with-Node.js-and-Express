@@ -17,7 +17,7 @@ const GenerateToken=(id)=>{
 //@route   POST/api/users
 //@access  Public
 const RegisterUser=asyncHandler(async (req,res)=>{
-    const {name,email,password}=req.body
+    const {name,email,password,role}=req.body
     if(!name||!email||!password)
         {
             res.status(400)
@@ -43,6 +43,7 @@ const RegisterUser=asyncHandler(async (req,res)=>{
         name,
         email,
         password:HashedPaSS,
+        role:role|| 'user', ////Default is user
     }) 
     if(newUser)
     {
@@ -50,6 +51,7 @@ const RegisterUser=asyncHandler(async (req,res)=>{
             _id:newUser.id,
             name:newUser.name,
             email:newUser.email,
+            role: newUser.role,
             token:GenerateToken(newUser._id)
         })
     }
@@ -103,8 +105,19 @@ const GetUser=asyncHandler(async(req,res)=>{
         email,
     })
 })
+
+//@desc    Get  user's data     
+//@route   GET/api/users/admin/getUser
+//@access  Protect
+const GetAllUsers = asyncHandler(async (req, res) => {
+
+    const users = await User.find({}).select('_id name email role');
+    res.status(200).json(users);
+});
+
 module.exports={
     RegisterUser,
     loginUser,
-    GetUser
+    GetUser,
+    GetAllUsers
 }

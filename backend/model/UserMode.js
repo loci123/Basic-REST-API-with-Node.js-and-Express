@@ -14,6 +14,11 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please add a password'],
     },
+    role: {
+        type: String,
+        enum: ['user', 'admin'],
+        default: 'user',
+    },
 }, 
 {
     timestamps: true // Correct the option to lowercase 'timestamps'

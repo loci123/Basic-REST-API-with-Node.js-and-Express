@@ -1,24 +1,33 @@
+// backend/server.js
+
 const express = require('express');
 const colors = require('colors');
 const dotenv = require('dotenv').config();
 const port = 3000;
 const connectDB = require('./config/db');
 const setupSwaggerDocs = require('./config/swagger');
+const {  notFound,errorHandler } = require('./middleWare/errorMiddleware');
+const logger = require('./config/logger');
+const morgan = require('morgan');
+const asyncHandler = require('express-async-handler');
+const Goal = require('../backend/model/UserMode');
+
 connectDB();
 
-const Goal = require('../backend/model/UserMode');
-const asyncHandler = require('express-async-handler');
-
 const app = express();
-setupSwaggerDocs(app); // Setup Swagger
+
+// Setup Swagger
+setupSwaggerDocs(app);
 
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Logging requests
+app.use(morgan('combined', { stream: { write: (message) => logger.info(message.trim()) }}));
+
+// Routes
 app.use('/api/users', require('./routes/userRoutes'));
-
-
 
 /**
  * @swagger
@@ -37,9 +46,14 @@ app.use('/api/users', require('./routes/userRoutes'));
  *                 $ref: '#/components/schemas/User'
  */
 app.get('/user', asyncHandler(async (req, res) => {
-    console.log('/***********\nGet method called on the Entry point /user\n***********/\n');
-    const users = await Goal.find().select('-password'); // Fetch all users from the database
-    res.json(users);
+    logger.info('Get method called on the Entry point /user');
+    try {
+        const users = await Goal.find().select('-password'); // Fetch all users from the database
+        res.json(users);
+    } catch (error) {
+        logger.error(`Error fetching users: ${error.message}`);
+        res.status(500).json({ message: 'Server error' });
+    }
 }));
 
 /**
@@ -61,12 +75,17 @@ app.get('/user', asyncHandler(async (req, res) => {
  *         description: Some server error
  */
 app.post('/user', asyncHandler(async (req, res) => {
-    console.log('/***********\nPost method called on the Entry point /user\n***********/\n');
-    const goal = await Goal.create({
-        email: req.body.email,
-        name: req.body.name,
-    });
-    res.status(200).json(goal);
+    logger.info('Post method called on the Entry point /user');
+    try {
+        const goal = await Goal.create({
+            email: req.body.email,
+            name: req.body.name,
+        });
+        res.status(200).json(goal);
+    } catch (error) {
+        logger.error(`Error creating user: ${error.message}`);
+        res.status(500).json({ message: 'Server error' });
+    }
 }));
 
 /**
@@ -98,18 +117,25 @@ app.post('/user', asyncHandler(async (req, res) => {
  */
 app.put('/user/:id', asyncHandler(async (req, res) => {
     const userId = req.params.id;
+    logger.info(`Put method called on the Entry point /user/${userId}`);
     if (!userId) {
+        logger.warn('User ID is required');
         return res.status(400).json({ error: 'User ID is required' });
     }
 
-    console.log('***********/\nPut method called on the Entry point /user\n***********/\n');
-    const { name, email } = req.body;
-    const user = await Goal.findByIdAndUpdate(userId, { name, email }, { new: true });
-    if (!user) {
-        res.status(404);
-        throw new Error('User not found');
+    try {
+        const { name, email } = req.body;
+        const user = await Goal.findByIdAndUpdate(userId, { name, email }, { new: true });
+        if (!user) {
+            logger.warn('User not found');
+            res.status(404);
+            throw new Error('User not found');
+        }
+        res.json(user);
+    } catch (error) {
+        logger.error(`Error updating user: ${error.message}`);
+        res.status(500).json({ message: 'Server error' });
     }
-    res.json(user);
 }));
 
 /**
@@ -135,17 +161,30 @@ app.put('/user/:id', asyncHandler(async (req, res) => {
  */
 app.delete('/user/:id', asyncHandler(async (req, res) => {
     const userId = req.params.id;
+    logger.info(`Delete method called on the Entry point /user/${userId}`);
     if (!userId) {
+        logger.warn('User ID is required');
         return res.status(400).json({ error: 'User ID is required' });
     }
 
-    console.log('***********/\ndelete method called on the Entry point /user\n***********/\n');
-    const user = await Goal.findByIdAndDelete(userId);
-    if (!user) {
-        res.status(404);
-        throw new Error('User not found');
+    try {
+        const user = await Goal.findByIdAndDelete(userId);
+        if (!user) {
+            logger.warn('User not found');
+            res.status(404);
+            throw new Error('User not found');
+        }
+        res.json({ message: `User number ${userId} deleted!` });
+    } catch (error) {
+        logger.error(`Error deleting user: ${error.message}`);
+        res.status(500).json({ message: 'Server error' });
     }
-    res.json({ message: `User number ${userId} deleted!` });
 }));
 
-app.listen(port, () => console.log(`Server is started on port ${port}`));
+// Not found middleware
+app.use(notFound);
+app.use(errorHandler)
+
+app.listen(port, () => {
+    console.log(`Server started on port ${port}`);
+});

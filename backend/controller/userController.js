@@ -3,7 +3,7 @@ const bcrypt=require('bcryptjs')
 const asyncHandler=require('express-async-handler')
 const User=require('../model/UserMode')
 const { json } = require('express')
-
+const NotFoundError = require('../utils/errors');
 
 ///GenerateToken
 const GenerateToken=(id)=>{
@@ -57,7 +57,7 @@ const RegisterUser=asyncHandler(async (req,res)=>{
     }
     else{
         res.status(400)
-        throw new Error('Invalid Data Please try entering valid data for user')
+        throw new NotFoundError("Invalid Data Please try entering valid data for user")
     }
 
 })
@@ -87,7 +87,7 @@ const loginUser=asyncHandler(async(req,res)=>{
     }
     else{
         res.status(400)
-        throw new Error('Invalid user credentials')
+        throw new NotFoundError("Invalid user credentials")
     }
    
 })

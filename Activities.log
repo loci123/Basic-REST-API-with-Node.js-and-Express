@@ -1,0 +1,2 @@
+2024-07-01 20:17:15 info: ::1 - - [01/Jul/2024:15:17:15 +0000] "POST /api/users/login HTTP/1.1" 200 258 "-" "PostmanRuntime/7.39.0"
+2024-07-01 20:18:05 info: ::1 - - [01/Jul/2024:15:18:05 +0000] "POST /api/users/login HTTP/1.1" 200 258 "-" "PostmanRuntime/7.39.0"

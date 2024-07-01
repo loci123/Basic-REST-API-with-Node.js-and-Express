@@ -1,0 +1,11 @@
+2024-07-01 20:18:31 error: Error: Not Authorized, No token
+    at F:\Social Swirls Internship Tasks\task 5\backend\middleWare\authMiddleware.js:27:15
+    at asyncUtilWrap (F:\Social Swirls Internship Tasks\task 5\node_modules\express-async-handler\index.js:3:20)
+    at Layer.handle [as handle_request] (F:\Social Swirls Internship Tasks\task 5\node_modules\express\lib\router\layer.js:95:5)
+    at next (F:\Social Swirls Internship Tasks\task 5\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (F:\Social Swirls Internship Tasks\task 5\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (F:\Social Swirls Internship Tasks\task 5\node_modules\express\lib\router\layer.js:95:5)
+    at F:\Social Swirls Internship Tasks\task 5\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (F:\Social Swirls Internship Tasks\task 5\node_modules\express\lib\router\index.js:346:12)
+    at next (F:\Social Swirls Internship Tasks\task 5\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (F:\Social Swirls Internship Tasks\task 5\node_modules\express\lib\router\index.js:175:3)

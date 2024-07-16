@@ -23,8 +23,6 @@ function App() {
       console.log('Received comment:', message);
     });
     
-    
-
     socket.on("disconnect", () => {
       console.log('Disconnected from WebSocket server');
     });

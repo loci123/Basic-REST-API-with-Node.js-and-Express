@@ -1,13 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import io from 'socket.io-client';
 
 const CommentSection = ({ taskId }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
-  
 
   useEffect(() => {
+    // Initialize socket connection
+    const socket = io(process.env.REACT_APP_SERVER_URI, {
+      query: { token: localStorage.getItem('token') },
+    });
+
+    // Listen for 'newComment' event
+    socket.on('newComment', () => {
+      fetchComments();
+    });
+
+    // Fetch comments on component mount
     fetchComments();
+
+    // Clean up the socket connection on component unmount
+    return () => {
+      socket.disconnect();
+    };
   }, []);
 
   const fetchComments = async () => {
@@ -38,7 +54,6 @@ const CommentSection = ({ taskId }) => {
         }
       );
       console.log('Comment added successfully:', response.data);
-      fetchComments(); // Fetch comments again to update the list
       setNewComment(''); // Clear the input field
     } catch (error) {
       console.error('Error adding comment:', error);

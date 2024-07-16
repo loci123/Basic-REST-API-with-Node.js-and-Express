@@ -9054,3 +9054,29 @@
     at ServerResponse.json (C:\Users\user\Desktop\back-front\Basic-REST-API-with-Node.js-and-Express-main\node_modules\express\lib\response.js:279:15)
     at C:\Users\user\Desktop\back-front\Basic-REST-API-with-Node.js-and-Express-main\backend\controller\CommentController.js:26:21
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-07-08 00:27:35 error: Error: Not Found - /Register
+    at notFound (C:\Users\user\Desktop\back-front\Basic-REST-API-with-Node.js-and-Express-main\backend\middleWare\errorMiddleware.js:15:19)
+    at Layer.handle [as handle_request] (C:\Users\user\Desktop\back-front\Basic-REST-API-with-Node.js-and-Express-main\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\user\Desktop\back-front\Basic-REST-API-with-Node.js-and-Express-main\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\user\Desktop\back-front\Basic-REST-API-with-Node.js-and-Express-main\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\user\Desktop\back-front\Basic-REST-API-with-Node.js-and-Express-main\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\user\Desktop\back-front\Basic-REST-API-with-Node.js-and-Express-main\node_modules\express\lib\router\index.js:280:10)
+    at cors (C:\Users\user\Desktop\back-front\Basic-REST-API-with-Node.js-and-Express-main\node_modules\cors\lib\index.js:188:7)
+    at C:\Users\user\Desktop\back-front\Basic-REST-API-with-Node.js-and-Express-main\node_modules\cors\lib\index.js:224:17
+    at originCallback (C:\Users\user\Desktop\back-front\Basic-REST-API-with-Node.js-and-Express-main\node_modules\cors\lib\index.js:214:15)
+    at C:\Users\user\Desktop\back-front\Basic-REST-API-with-Node.js-and-Express-main\node_modules\cors\lib\index.js:219:13
+2024-07-15 21:00:49 error: Error: Not authorized, no token
+    at C:\Users\user\Desktop\back-front\Basic-REST-API-with-Node.js-and-Express-main\backend\middleWare\authMiddleware.js:22:11
+    at asyncUtilWrap (C:\Users\user\Desktop\back-front\Basic-REST-API-with-Node.js-and-Express-main\node_modules\express-async-handler\index.js:3:20)
+    at Layer.handle [as handle_request] (C:\Users\user\Desktop\back-front\Basic-REST-API-with-Node.js-and-Express-main\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\user\Desktop\back-front\Basic-REST-API-with-Node.js-and-Express-main\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\user\Desktop\back-front\Basic-REST-API-with-Node.js-and-Express-main\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\user\Desktop\back-front\Basic-REST-API-with-Node.js-and-Express-main\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\user\Desktop\back-front\Basic-REST-API-with-Node.js-and-Express-main\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\user\Desktop\back-front\Basic-REST-API-with-Node.js-and-Express-main\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\user\Desktop\back-front\Basic-REST-API-with-Node.js-and-Express-main\node_modules\express\lib\router\index.js:280:10)
+    at C:\Users\user\Desktop\back-front\Basic-REST-API-with-Node.js-and-Express-main\node_modules\express\lib\router\index.js:646:15
+2024-07-16 12:37:48 error: TypeError: NotFoundError is not a constructor
+    at C:\Users\user\Desktop\back-front\Basic-REST-API-with-Node.js-and-Express-main\backend\controller\userController.js:91:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\user\Desktop\back-front\Basic-REST-API-with-Node.js-and-Express-main\backend\routes\userRoutes.js:21:9

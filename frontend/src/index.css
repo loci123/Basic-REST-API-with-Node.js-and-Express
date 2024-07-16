@@ -318,10 +318,11 @@ h3 {
 }
 .status-Container {
   position: relative;
-  left: -403px; /* Adjust the left position as needed */
-  top: 80px; /* Adjust the top position as needed */
+  left: -403px; /* Default position */
+  top: 80px; /* Default position */
 }
-.status{
+
+.status {
   display: inline-block;
   margin-bottom: 10px; /* Adjust as needed */
   font-size: 14px; /* Adjust font size */
@@ -331,7 +332,47 @@ h3 {
   padding: 8px 16px; /* Adjust padding to make the button smaller */
   border-radius: 5px; /* Rounded corners */
 }
-.status:hover{
+
+.status:hover {
   background-color: #0056b3; /* Darker background on hover */
   text-decoration: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .status-Container {
+    right: auto; /* Adjust position for larger tablets */
+    top: 60px; /* Adjust top position */
+  }
+}
+
+@media (max-width: 992px) {
+  .status-Container {
+    left: -100px; /* Adjust position for smaller tablets */
+    top: 50px; /* Adjust top position */
+  }
+}
+
+@media (max-width: 768px) {
+  .status-Container {
+    left: 0; /* Center for mobile devices */
+    top: 40px; /* Adjust top position */
+    text-align: center; /* Center align for mobile */
+  }
+  .status {
+    display: block; /* Make button block element for better alignment */
+    margin: 0 auto 10px auto; /* Center button */
+    font-size: 16px; /* Increase font size */
+    padding: 10px 20px; /* Adjust padding */
+  }
+}
+
+@media (max-width: 576px) {
+  .status-Container {
+    top: 30px; /* Adjust top position for small mobile devices */
+  }
+  .status {
+    font-size: 18px; /* Increase font size */
+    padding: 12px 24px; /* Adjust padding */
+  }
 }
